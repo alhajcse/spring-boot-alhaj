@@ -1,0 +1,101 @@
+# Server Configuration
+server:
+  port: 8000
+  error:
+    include-stacktrace: always
+  compression:
+    enabled: true
+  address: 192.168.1.144
+
+
+# Spring Configuration
+spring:
+  jackson:
+    date-format: yyyy-MM-dd
+  application:
+    name: iwp-service
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: always
+  main:
+    allow-bean-definition-overriding: true
+
+  # Database Configuration
+  datasource:
+    url: jdbc:sqlserver://192.168.1.20:1433;databaseName=IEIMS_ALHAJ
+    username: alhaj
+    password: "@lH@j!"
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+    # Hikari Configuration
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 15
+      idle-timeout: 30000
+      pool-name: SpringBootJPAHikariCP
+      max-lifetime: 2000000
+      connection-timeout: 30000
+
+  # JPA Configuration
+  jpa:
+    # Properties
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        naming:
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show_sql: true
+        format_sql: true
+        use_sql: true
+        shutdown_on_session_factory_close: false
+        connection:
+          characterEncoding: utf-8
+          CharSet: utf-8
+          useUnicode: true
+          legacy_limit_handler: true
+    # Hibernate
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  # Servlet Configuration
+  servlet:
+    multipart:
+      enabled: true
+      location: /tmp
+      max-file-size: 512MB
+      max-request-size: 512MB
+      resolve-lazily: false
+
+
+
+
+
+# Management Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  #feign.client.config.default.connectTimeout: 160000000
+  #feign.client.config.default.readTimeout: 160000000
+
+  # Servlet Configuration
+  servlet:
+    multipart:
+      enabled: true
+      location: /tmp
+      max-file-size: 10KB
+      max-request-size: 30KB
+      resolve-lazily: false
+
+
+
+
+

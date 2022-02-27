@@ -1,0 +1,4 @@
+rootProject.name = 'spring-boot-alhaj'
+include 'untitled'
+include 'spring-data-jpa'
+
